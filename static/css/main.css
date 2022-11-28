@@ -1,0 +1,21 @@
+#logo{
+
+}
+
+body{
+    background-color: #ebeff5;
+}
+
+
+#total-bookings{
+    background-color: #5cbdb9;
+}
+
+
+#bookings-done{
+    background-color: #4cb4c7;
+}
+
+#bookings-pending{
+    background-color: #e19a52;
+}
