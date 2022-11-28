@@ -1,0 +1,50 @@
+{% extends 'reports_partials/reports_exhibitions_base.html' %}
+{%block title %}Reports{% endblock %}
+
+{% block content %}
+<div class="row mt-3 ">
+  <div class="col-md-4">
+    <div class="border p-3 shadow">
+      <h4>Filter by Year</h4>
+      <hr>
+      <form method="get">
+       
+        {{form}}
+        <button class="btn btn-primary"  type ="submit">
+          Search</button>
+        
+      </form>
+  </div>
+  </div>
+  
+  <div class="col-md-8">
+    <canvas id="myChart"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+   
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {  
+        labels: [{% for exhibition_year in exhibition_year_list %} '{{ exhibition_year }}', {% endfor %}],
+        datasets: [{
+          label: 'Exhibitions by Year',
+          data: [{% for exhibition_number_list in exhibition_number_list %} '{{ exhibition_number_list }}', {% endfor %}],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  
+</div>
+</div>
+  {% endblock %}

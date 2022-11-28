@@ -1,0 +1,35 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+		<br>
+
+		<div class="row">
+			<div class="col-md">
+				<div class="card card-body">
+					<h5>Tickets</h5>
+				</div>
+				<div class="card card-body">
+					<table class="table">
+						<tr>
+							<th>Ticket id</th>
+							<th>Ticket Type</th>
+							<th>Price</th>
+                            <th>Discription</th>
+						</tr>
+						{% for i in ticket%}
+						<tr>
+						<td>{{i.ticket_id}}</td>
+						<td>{{i.ticket_type}}</td>
+						<td>{{i.ticket_price}}</td>
+						<td>{{i.description}}</td>
+					</tr>
+					{% endfor %}
+
+					</table>
+				</div>
+			</div>
+			
+		</div>
+
+{% endblock content %}

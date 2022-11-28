@@ -1,0 +1,48 @@
+{% extends 'reports_partials/reports_arts_base.html' %}
+{%block title %}Reports{% endblock %}
+
+{% block content %}
+<div class="row mt-3 ">
+  <div class="col-md-4">
+    <div class="border p-3 shadow">
+      <h4>Arts Report</h4>
+      <hr>
+      <form method="get">
+       
+        {{form}}
+        <button class="btn btn-primary"  type ="submit">
+          Search</button>
+        
+      </form>
+  </div>
+  </div>
+  
+  <div class="col-md-8">
+    <canvas id="pie-chart" width="800" height="450"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+   
+    const ctx = document.getElementById('myChart');
+    new Chart(document.getElementById("pie-chart"), {
+        type: 'pie',
+        data: {
+          labels: [{% for art_type in art_type_list %} '{{ art_type }}', {% endfor %}],
+          datasets: [{
+            label: "Arts by Type",
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+            data: [{% for art_type_no in art_type_no %} '{{ art_type_no }}', {% endfor %}]
+          }]
+        },
+        options: {
+          title: {
+            display: true,
+            text: 'Predicted world population (millions) in 2050'
+          }
+        }
+    });
+  </script>
+  
+</div>
+</div>
+  {% endblock %}

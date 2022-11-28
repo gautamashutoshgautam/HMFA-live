@@ -1,0 +1,105 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+
+
+<br>
+
+<div class="row">
+	<div class="col-md-5">
+		<h5>Exhibition</h5>
+		<hr>
+		<div class="row">
+			<div class="col">
+				<div class="card card-body">
+					<form method="get">
+						{{myFilter2.form}}
+					<button class="btn btn-primary" type="submit">Search</button>
+				</form>
+				</div>
+			</div>
+			
+		</div>
+		<br>
+		<div class="card card-body">
+			{% if request.user.is_staff %}
+			<a class="btn btn-primary  btn-sm btn-block" href="{% url 'create_exhibitions' %}">Create Exhibition</a>
+			{% endif %}
+			<table class="table table-sm">
+				<tr>
+					
+					<th>Exhibition Name</th>
+					<th>Exhibition Year</th>
+					<th>Curator Name</th>
+					{% if request.user.is_staff %}
+					<th>Update/Delete</th>
+					{% endif %}
+				</tr>
+                {% for exhibitions in exhibitions %}
+                <tr>
+                    <td>{{exhibitions.exhibition_title}}</td>
+                    <td>{{exhibitions.exhibition_year}}</td>
+					<td>{{exhibitions.curator_name}}</td>
+				{% if request.user.is_staff %}
+				<th><a class="btn btn-sm btn-info" href="{% url 'update_exhibitions' exhibitions.exhibition_id %}">Update</a></th>
+				<th><a class="btn btn-sm btn-danger" href="{% url 'delete_exhibitions' exhibitions.exhibition_id %}">Delete</a></th>
+                {% endif %}
+				{% endfor %}
+			</tr>
+
+
+			</table>
+		</div>
+	</div>
+		<hr>
+	<div class="col-md-7">
+		<h5>Arts</h5>
+		<hr>
+		<br>
+			<div class="row">
+						<div class="col">
+							<div class="card card-body">
+								<form method="get">
+									{{myFilter1.form}}
+								<button class="btn btn-primary" type="submit">Search</button>
+							</form>
+							</div>
+						</div>
+						
+					</div>
+					<br>
+		<div class="card card-body">
+			{% if request.user.is_staff %}
+			<a class="btn btn-primary  btn-sm btn-block" href= "{% url 'create_arts' %}" > Create Arts</a>
+			{% endif %}
+			<table class="table table-sm">
+				
+				<tr>
+					<th>Art Name</th>
+					<th>Art Type</th>
+					<th>Artist</th>
+					<th>Out on Loan</th>
+					{% if request.user.is_staff %}
+					<th>Update/Delete</th>
+					{% endif %}
+				</tr>
+                {% for arts in arts %}
+                <tr>
+                    <td>{{arts.art_piece_name}}</td>
+					<td>{{arts.art_type}}</td>
+					<td>{{arts.artist.artist_name}}</td>
+					<td>{{arts.out_on_loan}}</td>
+					{% if request.user.is_staff %}
+					<th><a class="btn btn-sm btn-info" href="{% url 'update_arts' arts.art_piece_id %}">Update</a></th>
+					<th><a class="btn btn-sm btn-danger" href="{% url 'delete_arts' arts.art_piece_id %}">Delete</a></th>
+					{% endif %}
+				</tr>
+                {% endfor %}
+			</table>
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}

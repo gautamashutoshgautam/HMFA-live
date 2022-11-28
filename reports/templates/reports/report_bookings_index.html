@@ -1,0 +1,51 @@
+{% extends 'reports_partials/reports_bookings_base.html' %}
+{%block title %}Reports{% endblock %}
+
+{% block content %}
+<div class="row mt-3 ">
+  <div class="col-md-4">
+    <div class="border p-3 shadow">
+      <h4>Bookings Report</h4>
+      <hr>
+      <form method="get">
+       
+        {{form}}
+        <button class="btn btn-primary"  type ="submit">
+          Search</button>
+        
+      </form>
+  </div>
+  </div>
+  
+  <div class="col-md-8">
+    <canvas id="line-chart" width="800" height="450"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+   
+    const ctx = document.getElementById('myChart');
+    new Chart(document.getElementById("line-chart"), {
+  type: 'line',
+  data: {
+    labels: [{% for status in status_list %} '{{ status }}', {% endfor %}],
+    datasets: [{ 
+        data: [{% for status_no in status_no %} '{{ status_no }}', {% endfor %}],
+        label: "Bookings by Status",
+        borderColor: "#3e95cd",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Tickets booked by status (in millions)'
+    }
+  }
+});
+
+</script>
+</div>
+</div>
+  {% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'accounts/main.html' %}
+{% block content %}
+{% include 'accounts/status.html' %}
+
+<div class="row">
+    <div class="col">
+        <div class="card card-body">
+           
+        </div>
+    </div>
+
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <table class="table table-sm">
+                <tr>
+                    <th>Booking Id</th>
+                    <th>Ticket Type</th>
+                    <th>Date Booked</th>
+                    <th>Status</th>
+
+                </tr>
+                {%for bookings in booking%}
+                <tr>
+                    <td>{{bookings.bookings_id}}</td>
+                    <td>{{bookings.ticket.ticket_type}}</td>
+                    <td>{{bookings.date_booked}}</td>
+                    <td>{{bookings.status}}</td>
+
+                    {%endfor%}
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

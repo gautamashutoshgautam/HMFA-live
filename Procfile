@@ -1,0 +1,1 @@
+web: gunicorn hmfa.wsgi --log-file -
