@@ -8,6 +8,7 @@ class ExhibitionsForm(forms.ModelForm):
         fields = ['exhibition_year']
         exhibition_year=forms.CharField()
         content= forms.CharField()
+        
 class ArtsForm(forms.ModelForm):
     class Meta:
         model = Arts
