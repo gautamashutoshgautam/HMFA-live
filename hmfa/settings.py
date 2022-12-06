@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 import pymysql
 from pathlib import Path
+import warnings
+warnings.filterwarnings("ignore", message="No directory at", module="whitenoise.base" )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +28,7 @@ SECRET_KEY = 'django-insecure-l970y=6c13%-ws&o6071un#dhku0s9#a6ga=n(rz*@i_%!y)2@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['hmfa.herokuapp.com', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['hmfa.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -88,8 +90,8 @@ DATABASES = {
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
         'NAME': 'fineartsmuseum_schema',  
-        'USER': 'debauer',  
-        'PASSWORD': 'co$C3380group10$$',  
+        'USER': 'iramos',  
+        'PASSWORD': 'Co$c3380gRoup10',  
         'HOST': 'fineartsmuseum.mysql.database.azure.com',  
         'PORT': '3306',
         'OPTIONS': {'ssl': {'key': '/map/to/ca-cert.pem'}}
